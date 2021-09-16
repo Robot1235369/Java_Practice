@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Main {
+class RPS {
     public static void main(String args[]) {
         int playAgain = 1;
         int win = 0;

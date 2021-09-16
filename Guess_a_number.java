@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Guess_a_number {
     public static void main(String args[]) {
-        int playAgain = 1;
         int difficulty = 0;
         int guess;
         int guesses;
         int win = 0;
+        char playagain = "y";
 
         System.out.println("Welcome to guess a number\n");
 
@@ -41,6 +41,12 @@ public class Guess_a_number {
                 System.out.println("Your guesses ran out!");
             }
 
-        } while (playAgain == 1);
+            do {
+                Scanner scan = new Scanner(System.in);
+                System.out.print("Do you want to play again? ");
+                playagain = scan.next().charAt(0);
+            } while (playagain != 'y' && playagain != 'n');
+
+        } while (playagain == 'y');
     }
 }
