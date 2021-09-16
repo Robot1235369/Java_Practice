@@ -6,7 +6,7 @@ public class Guess_a_number {
         int guess;
         int guesses;
         int win = 0;
-        char playagain = "y";
+        char playagain = 'y';
 
         System.out.println("Welcome to guess a number\n");
 
