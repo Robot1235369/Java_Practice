@@ -3,8 +3,8 @@ import java.util.*;
 class Guess_It {
     public static void main(String[] args) {
         String rules;
-        int guess;
-        String difficulty;
+        int guess = 0;
+        String difficulty = "0";
         int diff = 10;
         int rand;
 
@@ -27,7 +27,7 @@ class Guess_It {
             System.out.println("\npress enter to continue or type \"diff\" if you want to change the difficulty");
             try {
                 Scanner scan = new Scanner(System.in);
-                difficulty = scan.nextLine().charAt(0);
+                difficulty = scan.nextLine();
             } catch (Exception e) {
             } finally {
                 if (difficulty.equals("diff")) {
@@ -43,17 +43,38 @@ class Guess_It {
             rand = Rand.nextInt(101);
         } while (rand == 0);
 
-        do {
-            System.out.print("Enter a number 1 - 100: ");
-            Scanner scan = new Scanner(System.in);
-            guess = scan.nextInt();
-        } while (guess < 1 || guess > 100);
+        for (int i = diff; i > 0; i--) {
+            if (i == diff) {
+                System.out.print("You have a total of ");
+                System.out.print(diff);
+                System.out.println(" guesses");
+            } else {
+                System.out.print("You have ");
+                System.out.print(i);
+                System.out.println(" guesses left");
+            }
 
-        // System.out.println("Would you like to play again \"yes\" or \"no\"?");
-        // Scanner scan = new Scanner(System.in);
-        // String playagain = scan.next();
-        // // if (playagain.equals("yes")) {
-        //
-        // // }
+            do {
+                System.out.print("Enter a number 1 - 100: ");
+                Scanner scan = new Scanner(System.in);
+                guess = scan.nextInt();
+            } while (guess < 1 || guess > 100);
+            
+            if (guess == rand) {
+                break;
+            }
+        }
+
+        if (guess == rand) {
+            System.out.println("Congradulations, You Won!");
+        } else {
+            System.out.println("Oh No, Your guesses ran out");
+        }
+        
+        do {
+        System.out.println("Would you like to play again \"yes\" or \"no\"?");
+        Scanner scan = new Scanner(System.in);
+        String playagain = scan.next();
+        } while (playagain != "yes" && playagain != "no");
     }
 }
