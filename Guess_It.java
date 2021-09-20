@@ -7,6 +7,7 @@ class Guess_It {
         String difficulty = "0";
         int diff = 10;
         int rand;
+        String playagain;
 
         System.out.println("\n\n-----WELCOME TO GUESS IT!-----\n\n");
         System.out.println("You can exit the game at anytime using ctrl+c\n");
@@ -60,7 +61,11 @@ class Guess_It {
                 guess = scan.nextInt();
             } while (guess < 1 || guess > 100);
             
-            if (guess == rand) {
+            if (guess > rand) {
+
+            } elif (guess < rand) {
+
+            } elif (guess == rand) {
                 break;
             }
         }
@@ -74,7 +79,7 @@ class Guess_It {
         do {
         System.out.println("Would you like to play again \"yes\" or \"no\"?");
         Scanner scan = new Scanner(System.in);
-        String playagain = scan.next();
+        playagain = scan.next();
         } while (playagain != "yes" && playagain != "no");
     }
 }
