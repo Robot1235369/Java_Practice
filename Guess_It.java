@@ -5,7 +5,7 @@ class Guess_It {
         String rules;
         int guess = 0;
         String difficulty = "0";
-        int diff = 10;
+        int diff = 6;
         int rand;
         String playagain;
 
@@ -20,7 +20,9 @@ class Guess_It {
 
         if (rules.equals("yes")) {
             System.out.println("- The Computer will generate a random number 1 - 100");
-            System.out.println("- You have 10 chances to guess the number or you lose");
+            System.out.print("- You have ");
+            System.out.print(diff);
+            System.out.println(" chances to guess the number or you lose");
             System.out.println("(you can change your number of guesses by changing the difficulty)");
             System.out.println("- After each guess the computer will tell you if your guess");
             System.out.println("was too high or if your guess was too low");
@@ -40,46 +42,55 @@ class Guess_It {
         }
 
         do {
-            Random Rand = new Random();
-            rand = Rand.nextInt(101);
-        } while (rand == 0);
-
-        for (int i = diff; i > 0; i--) {
-            if (i == diff) {
-                System.out.print("You have a total of ");
-                System.out.print(diff);
-                System.out.println(" guesses");
-            } else {
-                System.out.print("You have ");
-                System.out.print(i);
-                System.out.println(" guesses left");
-            }
-
             do {
-                System.out.print("Enter a number 1 - 100: ");
-                Scanner scan = new Scanner(System.in);
-                guess = scan.nextInt();
-            } while (guess < 1 || guess > 100);
+                Random Rand = new Random();
+                rand = Rand.nextInt(101);
+            } while (rand == 0);
+
+            for (int i = diff; i > 0; i--) {
+                if (i == diff) {
+                    System.out.print("\nYou have a total of ");
+                    System.out.print(diff);
+                    System.out.println(" guesses");
+                } else {
+                    System.out.print("You have ");
+                    System.out.print(i);
+                    if (i == 1) {
+                        System.out.println(" guess left");
+                    } else {
+                        System.out.println(" guesses left");
+                    }
+                }
+
+                do {
+                    System.out.print("Enter a number 1 - 100: ");
+                    Scanner scan = new Scanner(System.in);
+                    guess = scan.nextInt();
+                } while (guess < 1 || guess > 100);
             
-            if (guess > rand) {
-
-            } elif (guess < rand) {
-
-            } elif (guess == rand) {
-                break;
+                if (guess > rand) {
+                    System.out.println("\nToo High");
+                } else if (guess < rand) {
+                    System.out.println("\nToo Low");
+                } else if (guess == rand) {
+                    break;
+                }
             }
-        }
 
-        if (guess == rand) {
-            System.out.println("Congradulations, You Won!");
-        } else {
-            System.out.println("Oh No, Your guesses ran out");
-        }
+            if (guess == rand) {
+                System.out.println("Congradulations, You Won!");
+            } else {
+                System.out.println("Oh No, Your guesses ran out");
+                System.out.print("The random number was ");
+                System.out.println(rand);
+            }
         
-        do {
-        System.out.println("Would you like to play again \"yes\" or \"no\"?");
-        Scanner scan = new Scanner(System.in);
-        playagain = scan.next();
-        } while (playagain != "yes" && playagain != "no");
+            do {
+                System.out.println("Would you like to play again \"yes\" or \"no\"?");
+                Scanner scan = new Scanner(System.in);
+                playagain = scan.next();
+            } while (!playagain.equals("yes") && !playagain.equals("no"));
+
+        } while (playagain.equals("yes"));
     }
 }
