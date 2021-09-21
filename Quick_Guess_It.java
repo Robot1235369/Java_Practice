@@ -1,17 +1,37 @@
 import java.util.*;
+import java.io.*;
 
-class Guess_It {
+class Quick_Guess_It {
     public static void main(String[] args) {
         String rules;
         int guess = 0;
         int guesses;
         int rand;
         String playagain;
-        int scores[];
-        int i = 0;
+        int scores[] = {0, 0, 0, 0, 0, 0, 0, 0};
+        int your_scores[] = {0, 0, 0, 0, 0, 0, 0, 0};
+        int i = -1;
+        int j = 0;
+        String score;
+
+        scores[0] = 5;
+        your_scores[0] = 5;
+
+        try {
+            File highscores = new File("Highscores.txt");
+            highscores.createNewFile();
+            FileWriter writer = new FileWriter("Highscores.txt");
+            Scanner reader = new Scanner(highscores);
+            while (reader.hasNextLine()) {
+                i++;
+                int data = reader.nextInt();
+                scores[i] = data;
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
 
         System.out.println("\n\n-----WELCOME TO GUESS IT!-----\n\n");
-        System.out.println("You can exit the game at anytime using ctrl+c\n");
 
         do {
             System.out.println("Would you like to see the rules \"yes\" or \"no\"?");
@@ -77,6 +97,6 @@ class Guess_It {
         } while (playagain.equals("yes"));
 
         System.out.print("Your highscore was: ");
-        System.out.print();
+        System.out.println();
     }
 }
