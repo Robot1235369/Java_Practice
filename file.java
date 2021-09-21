@@ -21,9 +21,18 @@ public class file {
         }
 
         for (int j = 0; j < scores.length; j++) {
-            score += String.valueOf(scores[j]);
-            writer.write(score);
+            score += String.valueOf(scores[j]); 
+            FileWriter writer;
+            WRITE(writer, score);
+            score = "";
         }
 
+    }
+
+    static void WRITE(FileWriter writer, String score) {
+        try {
+            writer.write(score);
+        } catch (IOException e) {
+        }
     }
 }
