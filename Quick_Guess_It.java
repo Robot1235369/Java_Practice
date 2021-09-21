@@ -11,7 +11,6 @@ class Quick_Guess_It {
         int scores[] = {0, 0, 0, 0, 0, 0, 0, 0};
         int your_scores[] = {0, 0, 0, 0, 0, 0, 0, 0};
         int i = -1;
-        int j = 0;
         String score;
 
         scores[0] = 5;
@@ -53,6 +52,8 @@ class Quick_Guess_It {
         }
 
         do {
+            i = scores.length - 1;
+
             do {
                 Random Rand = new Random();
                 rand = Rand.nextInt(1001);
@@ -93,6 +94,10 @@ class Quick_Guess_It {
 
             scores[i] = guesses;
             i++;
+
+            for (int j = 0; j < scores.length; j++) {
+                
+            }
 
         } while (playagain.equals("yes"));
 
