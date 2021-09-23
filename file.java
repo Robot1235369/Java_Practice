@@ -4,27 +4,27 @@ import java.util.*;
 public class file {
     public static void main(String[] arg) {
         try {
-            int scores[] = {0, 0, 0, 0, 0, 0, 0};
-            int i = -1;
-            String score = "";
+            int score;
+            int your_score;
 
             File highscores = new File("Highscores.txt");
             highscores.createNewFile();
 
-            // Scanner reader = new Scanner(highscores);
-                // while (reader.hasNextLine()) {
-                //     i++;
-                //     int data = reader.nextInt();
-                //     scores[i] = data;
-                // }
+            score = 5;
 
-            for (int j = 0; j < scores.length; j++) {
-                File highscores = new File("Highscores.txt");
-                FileWriter writer = new FileWriter("Highscores.txt");
-                score += String.valueOf(scores[j]); 
-                writer.write(score);
-                score = "";
+            FileWriter writer = new FileWriter("Highscores.txt");
+            writer.write(score);
+            score = 0;
+            Scanner reader = new Scanner(highscores);
+
+            while (reader.hasNextLine()) {
+                int data = reader.nextInt();
+                score = data;
             }
+
+            System.out.print("score: ");
+            System.out.println(score);
+
         } catch (IOException e) {
             System.out.println("Error");
         }
