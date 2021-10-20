@@ -9,23 +9,19 @@ class Quick_Guess_It {
         int rand;
         String playagain;
         int score = 1000;
-        int your_scores[] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000};
-        int your_score;
+        int your_scores[] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000};
         int i = 0;
         int times = 0;
-        int biggest = your_scores[0];
+        int biggest;
 
         try {
             File highscores = new File("Highscores.txt");
             highscores.createNewFile();
             Scanner reader = new Scanner(highscores);
-            while (reader.hasNextLine()) {
-                int data = reader.nextInt();
-                score = data;
-            }
+            int data = reader.nextInt();
+            score = data;
         } catch (IOException e) {
             score = 5;
-            your_score = 5;
             System.out.println(e);
         }
 
@@ -97,31 +93,33 @@ class Quick_Guess_It {
 
         } while (playagain.equals("yes") && times < 9);
 
-        for (int j = 1; j < your_scores.length; j++) {
-            if (biggest < your_scores[j]) {
+        biggest = your_scores[0];
+
+        for (int j = 0; j < your_scores.length; j++) {
+            if (biggest > your_scores[j]) {
                 biggest = your_scores[j];
             }
         }
-        if (biggest > score) {
-            System.out.print("Your highscore was: ");
-            System.out.println(biggest);
-        } else if (biggest == score) {
-            System.out.println("Congradulations you tied for first place!");
-            System.out.print("You also got ");
-            System.out.println(score);
-        } else if (biggest < score) {
-            score = biggest;
+        if (biggest < score) {
             System.out.println("Congradulations you broke the record!");
             System.out.print("The new highscore is ");
-            System.out.println(score);
+            System.out.println(biggest);
             try {
                 FileWriter writer = new FileWriter("Highscores.txt");
-                writer.write(score);
+                writer.write(biggest);
                 writer.close();
             } catch (IOException e) {
                 System.out.println("Error");
             }
+        } else if (biggest > score) {
+            System.out.print("Your highscore was: ");
+            System.out.println(biggest);
+            System.out.print("The record is: ");
+            System.out.println(score);
+        } else if (biggest == score) {
+            System.out.println("Congradulations you tied for first place!");
+            System.out.print("You also got ");
+            System.out.println(biggest);
         }
-
     }
 }
